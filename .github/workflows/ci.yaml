@@ -102,4 +102,5 @@ jobs:
           echo "$(cat result.temp)"
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }}
+          TF_LOG: DEBUG
         continue-on-error: false
