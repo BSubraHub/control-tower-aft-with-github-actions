@@ -104,7 +104,6 @@ jobs:
         id: plan
         run: |
           terraform plan >> result.temp
-          cat result.temp | tfnotify --config .tfnotify/github.yml plan --message "$(date)"
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }}
         continue-on-error: false
