@@ -18,8 +18,8 @@ jobs:
 
       - name: set up terraform
         run: |
-          wget https://releases.hashicorp.com/terraform/0.14.3/terraform_0.14.3_linux_amd64.zip
-          unzip terraform_0.14.3_linux_amd64.zip
+         wget https://releases.hashicorp.com/terraform/1.3.7/terraform_1.3.7_linux_amd64.zip
+          unzip terraform_1.3.7_linux_amd64.zip
           mv terraform /usr/local/bin/
       - name: terraform init
         id: tf-init
