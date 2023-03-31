@@ -99,6 +99,7 @@ jobs:
         id: plan
         run: |
           terraform plan >> result.temp
+          echo "$(cat result.temp)"
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }}
         continue-on-error: false
