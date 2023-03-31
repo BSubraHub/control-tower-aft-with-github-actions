@@ -7,6 +7,10 @@ tar xzf ./actions-runner-linux-x64-2.276.1.tar.gz
 ./bin/installdependencies.sh
 mkdir /_work
 
+PAT="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"
+ORG="Bharath-1991"
+REPO="private-control-tower-aft-with-github-actions"
+
 AUTH_HEADER="Authorization: token ${PAT}"
 API_VERSION=v3
 API_HEADER="Accept: application/vnd.github.${API_VERSION}+json"
