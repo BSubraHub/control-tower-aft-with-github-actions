@@ -27,6 +27,5 @@ jobs:
 
       - name: terraform apply
         id: plan
-        run: |
-          terraform apply >> result.temp
+        run: terraform apply
         continue-on-error: false
