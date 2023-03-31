@@ -1,9 +1,9 @@
 terraform {
   backend "s3" {
-    bucket         = "bh-infra-state1-bucket1"
+    bucket         = "control-tower-infra-bucket"
     region         = "ca-central-1"
-    key            =  "infra/control/bh-infra-ct"
-    dynamodb_table = "bh-infra-file-state1-dynamo1"
+    key            =  "infra/control/infra-ct"
+    dynamodb_table = "control-tower-dynamo-backend"
     encrypt        = true
   }
 }
