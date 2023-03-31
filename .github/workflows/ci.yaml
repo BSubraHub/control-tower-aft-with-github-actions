@@ -73,12 +73,15 @@ jobs:
       - name: terraform init
         id: tf-init
         run: terraform init -upgrade
-      # - name: terraform validate
-      #   id: validate
-      #   run: terraform validate -no-color
-      #   continue-on-error: false
+     - name: terraform plan
+        id: plan
+        run: |
+          terraform plan >> result.temp
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}
+        continue-on-error: false
 
-  TerraformPlan:
+  # TerraformPlan:
     needs: [Lint, Format, Security, TerraformInitValidate]
     runs-on: [self-hosted, aws-runner]
     defaults:
