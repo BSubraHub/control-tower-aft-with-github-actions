@@ -94,7 +94,7 @@ jobs:
           mv terraform /usr/local/bin/
       - name: terraform init
         id: tf-init
-        run: terraform init
+        run: terraform init -upgrade
       - name: terraform plan
         id: plan
         run: |
