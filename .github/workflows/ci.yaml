@@ -95,11 +95,6 @@ jobs:
       - name: terraform init
         id: tf-init
         run: terraform init
-      - name: setup tfnotify
-        run: |
-          curl -fL -o tfnotify.tar.gz https://github.com/mercari/tfnotify/releases/download/v0.7.0/tfnotify_linux_amd64.tar.gz
-          tar -xzf tfnotify.tar.gz
-          mv tfnotify /usr/local/bin/
       - name: terraform plan
         id: plan
         run: |
