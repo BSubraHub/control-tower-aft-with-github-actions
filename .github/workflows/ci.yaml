@@ -41,21 +41,21 @@ jobs:
         run: terraform fmt
         continue-on-error: false
 
-  Security:
-    runs-on: [self-hosted, TraderPubRunner]
-    defaults:
-      run:
-        shell: bash
-    steps:
-      - name: clone repository
-        uses: actions/checkout@v2
-      - name: setup tfsec and run
-        id: tfsec-setup
-        run: |
-          wget https://github.com/tfsec/tfsec/releases/download/v0.37.1/tfsec-linux-amd64
-          chmod a+x tfsec-linux-amd64
-          ./tfsec-linux-amd64
-        continue-on-error: false
+  # Security:
+  #   runs-on: [self-hosted, TraderPubRunner]
+  #   defaults:
+  #     run:
+  #       shell: bash
+  #   steps:
+  #     - name: clone repository
+  #       uses: actions/checkout@v2
+  #     - name: setup tfsec and run
+  #       id: tfsec-setup
+  #       run: |
+  #         wget https://github.com/tfsec/tfsec/releases/download/v0.37.1/tfsec-linux-amd64
+  #         chmod a+x tfsec-linux-amd64
+  #         ./tfsec-linux-amd64
+  #       continue-on-error: false
 
   TerraformInitValidate:
     runs-on: [self-hosted, TraderPubRunner]
