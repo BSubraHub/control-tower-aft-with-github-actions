@@ -9,7 +9,7 @@ on:
 
 jobs:
   Lint:
-    runs-on: [self-hosted, TraderPubRunner]
+    runs-on: [self-hosted, PersonalAftRunner]
     defaults:
       run:
         shell: bash
@@ -24,7 +24,7 @@ jobs:
         continue-on-error: false
 
   Format:
-    runs-on: [self-hosted, TraderPubRunner]
+    runs-on: [self-hosted, PersonalAftRunner]
     defaults:
       run:
         shell: bash
@@ -42,7 +42,7 @@ jobs:
         continue-on-error: false
 
   Security:
-    runs-on: [self-hosted, TraderPubRunner]
+    runs-on: [self-hosted, PersonalAftRunner]
     defaults:
       run:
         shell: bash
@@ -58,13 +58,17 @@ jobs:
         continue-on-error: true
 
   TerraformInitValidate:
-    runs-on: [self-hosted, TraderPubRunner]
+    runs-on: [self-hosted, PersonalAftRunner]
     defaults:
       run:
         shell: bash
     steps:
       - name: clone repository
         uses: actions/checkout@v2
+      - name: Configure AWS credentials from Production account
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-region: ca-central-1
       - name: setup terraform
         run: |
           wget https://releases.hashicorp.com/terraform/1.4.4/terraform_1.4.4_linux_amd64.zip
@@ -80,13 +84,17 @@ jobs:
 
   TerraformPlan:
     needs: [Lint, Format, Security, TerraformInitValidate]
-    runs-on: [self-hosted, TraderPubRunner]
+    runs-on: [self-hosted, PersonalAftRunner]
     defaults:
       run:
         shell: bash
     steps:
       - name: clone repository
         uses: actions/checkout@v2
+      - name: Configure AWS credentials from Production account
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-region: ca-central-1
       - name: setup terraform
         run: |
           wget https://releases.hashicorp.com/terraform/1.4.4/terraform_1.4.4_linux_amd64.zip

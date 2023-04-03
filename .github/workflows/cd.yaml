@@ -8,7 +8,7 @@ on:
 
 jobs:
   aws-cd:
-    runs-on: [self-hosted, TraderPubRunner]
+    runs-on: [self-hosted, PersonalAftRunner]
     defaults:
       run:
         shell: bash
