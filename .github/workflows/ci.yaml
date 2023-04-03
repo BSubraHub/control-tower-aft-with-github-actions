@@ -95,6 +95,14 @@ jobs:
       - name: terraform init
         id: tf-init
         run: terraform init -upgrade
+        env:
+          PAT: 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
+          ORG: Bharath-1991
+          REPO: private-control-tower-aft-with-github-actions
+          AWS_DEFAULT_REGION: ca-central-1
+          AWS_SECRET_ACCESS_KEY: JcVCV00K+0wqbd8JxyDGbiycoK61o8lytKOOR+vt
+          AWS_ACCESS_KEY_ID: AKIAYIR3MAAI6CQG4HWY
+          AWS_ACCOUNT_ID: 568133943313
       - name: terraform plan
         id: plan
         run: |
@@ -103,4 +111,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }}
           TF_LOG: DEBUG
+          PAT: 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
+          ORG: Bharath-1991
+          REPO: private-control-tower-aft-with-github-actions
+          AWS_DEFAULT_REGION: ca-central-1
+          AWS_SECRET_ACCESS_KEY: JcVCV00K+0wqbd8JxyDGbiycoK61o8lytKOOR+vt
+          AWS_ACCESS_KEY_ID: AKIAYIR3MAAI6CQG4HWY
+          AWS_ACCOUNT_ID: 568133943313
         continue-on-error: false
