@@ -94,7 +94,7 @@ jobs:
           sudo mv terraform /usr/local/bin/
       - name: terraform init
         id: tf-init
-        run: terraform init -upgrade -backend-config="access_key=AKIAYIR3MAAI6CQG4HWY" -backend-config="secret_key=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"
+        run: terraform init -upgrade
         env:
           PAT: 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
           ORG: Bharath-1991
