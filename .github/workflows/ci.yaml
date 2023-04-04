@@ -76,7 +76,7 @@ jobs:
           mv terraform /usr/local/bin/
       - name: terraform init
         id: tf-init
-        run: terraform init -upgrade
+        run: terraform init
       - name: terraform validate
         id: validate
         run: terraform validate -no-color
