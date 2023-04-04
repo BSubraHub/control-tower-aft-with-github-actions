@@ -35,7 +35,7 @@ jobs:
         run: |
           wget https://releases.hashicorp.com/terraform/1.4.4/terraform_1.4.4_linux_amd64.zip
           unzip terraform_1.4.4_linux_amd64.zip
-          sudo mv terraform /usr/local/bin/
+          mv terraform /usr/local/bin/
       - name: terraform fmt
         id: fmt
         run: terraform fmt
@@ -73,7 +73,7 @@ jobs:
         run: |
           wget https://releases.hashicorp.com/terraform/1.4.4/terraform_1.4.4_linux_amd64.zip
           unzip terraform_1.4.4_linux_amd64.zip
-          sudo mv terraform /usr/local/bin/
+          mv terraform /usr/local/bin/
       - name: terraform init
         id: tf-init
         run: terraform init -upgrade
@@ -99,7 +99,7 @@ jobs:
         run: |
           wget https://releases.hashicorp.com/terraform/1.4.4/terraform_1.4.4_linux_amd64.zip
           unzip terraform_1.4.4_linux_amd64.zip
-          sudo mv terraform /usr/local/bin/
+          mv terraform /usr/local/bin/
       - name: terraform init
         id: tf-init
         run: terraform init -upgrade
