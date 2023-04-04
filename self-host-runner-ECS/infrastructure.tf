@@ -228,7 +228,7 @@ resource "aws_ecs_task_definition" "task_definition" {
   [
     {
       "name": "ecs-runner",
-      "image": "747632300909.dkr.ecr.ca-central-1.amazonaws.com/ecs-runner:latest",
+      "image": "568133943313.dkr.ecr.ca-central-1.amazonaws.com/bharath-github-runner:latest",
       "cpu": 256,
       "memory": 512,
       "essential": true,

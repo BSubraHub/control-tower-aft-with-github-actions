@@ -9,7 +9,7 @@ on:
 
 jobs:
   Lint:
-    runs-on: [self-hosted, PersonalAftRunner]
+    runs-on: [self-hosted, aws-runner]
     defaults:
       run:
         shell: bash
@@ -24,7 +24,7 @@ jobs:
         continue-on-error: false
 
   Format:
-    runs-on: [self-hosted, PersonalAftRunner]
+    runs-on: [self-hosted, aws-runner]
     defaults:
       run:
         shell: bash
@@ -35,14 +35,14 @@ jobs:
         run: |
           wget https://releases.hashicorp.com/terraform/1.4.4/terraform_1.4.4_linux_amd64.zip
           unzip terraform_1.4.4_linux_amd64.zip
-          sudo mv terraform /usr/local/bin/
+          mv terraform /usr/local/bin/
       - name: terraform fmt
         id: fmt
         run: terraform fmt
         continue-on-error: false
 
   Security:
-    runs-on: [self-hosted, PersonalAftRunner]
+    runs-on: [self-hosted, aws-runner]
     defaults:
       run:
         shell: bash
@@ -58,7 +58,7 @@ jobs:
         continue-on-error: true
 
   TerraformInitValidate:
-    runs-on: [self-hosted, PersonalAftRunner]
+    runs-on: [self-hosted, aws-runner]
     defaults:
       run:
         shell: bash
@@ -73,18 +73,14 @@ jobs:
         run: |
           wget https://releases.hashicorp.com/terraform/1.4.4/terraform_1.4.4_linux_amd64.zip
           unzip terraform_1.4.4_linux_amd64.zip
-          sudo mv terraform /usr/local/bin/
+          mv terraform /usr/local/bin/
       - name: terraform init
         id: tf-init
-        run: terraform init -upgrade
-      # - name: terraform validate
-      #   id: validate
-      #   run: terraform validate -no-color
-      #   continue-on-error: false
+        run: terraform init
 
   TerraformPlan:
     needs: [Lint, Format, Security, TerraformInitValidate]
-    runs-on: [self-hosted, PersonalAftRunner]
+    runs-on: [self-hosted, aws-runner]
     defaults:
       run:
         shell: bash
@@ -99,31 +95,15 @@ jobs:
         run: |
           wget https://releases.hashicorp.com/terraform/1.4.4/terraform_1.4.4_linux_amd64.zip
           unzip terraform_1.4.4_linux_amd64.zip
-          sudo mv terraform /usr/local/bin/
+          mv terraform /usr/local/bin/
       - name: terraform init
         id: tf-init
-        run: terraform init -upgrade
-        env:
-          PAT: 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
-          ORG: Bharath-1991
-          REPO: private-control-tower-aft-with-github-actions
-          AWS_DEFAULT_REGION: ca-central-1
-          AWS_SECRET_ACCESS_KEY: JcVCV00K+0wqbd8JxyDGbiycoK61o8lytKOOR+vt
-          AWS_ACCESS_KEY_ID: AKIAYIR3MAAI6CQG4HWY
-          AWS_ACCOUNT_ID: 568133943313
+        run: terraform init
       - name: terraform plan
         id: plan
         run: |
-          terraform plan >> result.temp
-          echo "$(cat result.temp)"
+          terraform plan -no-color
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }}
           TF_LOG: DEBUG
-          PAT: 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
-          ORG: Bharath-1991
-          REPO: private-control-tower-aft-with-github-actions
-          AWS_DEFAULT_REGION: ca-central-1
-          AWS_SECRET_ACCESS_KEY: JcVCV00K+0wqbd8JxyDGbiycoK61o8lytKOOR+vt
-          AWS_ACCESS_KEY_ID: AKIAYIR3MAAI6CQG4HWY
-          AWS_ACCOUNT_ID: 568133943313
         continue-on-error: false
