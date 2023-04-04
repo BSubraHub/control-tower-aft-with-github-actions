@@ -77,10 +77,10 @@ jobs:
       - name: terraform init
         id: tf-init
         run: terraform init -upgrade
-      # - name: terraform validate
-      #   id: validate
-      #   run: terraform validate -no-color
-      #   continue-on-error: false
+      - name: terraform validate
+        id: validate
+        run: terraform validate -no-color
+        continue-on-error: false
 
   TerraformPlan:
     needs: [Lint, Format, Security, TerraformInitValidate]
@@ -106,8 +106,7 @@ jobs:
       - name: terraform plan
         id: plan
         run: |
-          terraform plan >> result.temp
-          echo "$(cat result.temp)"
+          terraform plan
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }}
           TF_LOG: DEBUG
