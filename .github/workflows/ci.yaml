@@ -106,7 +106,7 @@ jobs:
       - name: terraform plan
         id: plan
         run: |
-          terraform plan
+          terraform plan -no-color
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }}
           TF_LOG: DEBUG
